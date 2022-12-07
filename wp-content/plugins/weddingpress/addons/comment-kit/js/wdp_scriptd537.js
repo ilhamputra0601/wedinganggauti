@@ -136,7 +136,7 @@ jQuery(document).ready(function ($) {
     //Restauramos cualquier acción
     cancelCommentAction_WDP(post_id);
     var form = $('#commentform-' + post_id);
-    form.find('[name="comment_parent"]').val(comment_id);//input oculto con referencia al padre
+    form.find('[name="comment_parent"]').val(comment_id); //input oculto con referencia al padre
     form.find('.wdp-textarea').val('').attr('placeholder', WDP_WP.reply + '. ESC (' + WDP_WP.cancel + ')').focus();
     form.find('input[name="submit"]').addClass('wdp-reply-action');
     $('#commentform-' + post_id).find('input.wdp-cancel-btn').show();
@@ -155,7 +155,7 @@ jQuery(document).ready(function ($) {
     //Restauramos cualquier acción
     cancelCommentAction_WDP(post_id);
     var form = $('#commentform-' + post_id);
-    form.find('[name="comment_parent"]').val(comment_id);//input oculto con referencia al padre
+    form.find('[name="comment_parent"]').val(comment_id); //input oculto con referencia al padre
     form.find('.wdp-textarea').val('').focus();
     form.find('input[name="submit"]').addClass('wdp-edit-action');
     //scroll
@@ -202,8 +202,7 @@ jQuery(document).ready(function ($) {
       }, 2500);
       $(this).find(':submit').removeAttr('disabled');
       return false;
-    }
-    else {
+    } else {
       // VALIDAR CAMPOS DE TEXTO
       if ($(this).find('input#author').length) {
         var $author = $(this).find('input#author');
@@ -262,11 +261,9 @@ jQuery(document).ready(function ($) {
         //Insertamos un nuevo comentario
         if (form.find('input[name="submit"]').hasClass('wdp-edit-action')) {
           editComment_WDP(post_id, comment_id);
-        }
-        else if (form.find('input[name="submit"]').hasClass('wdp-reply-action')) {
+        } else if (form.find('input[name="submit"]').hasClass('wdp-reply-action')) {
           insertCommentReply_WDP(post_id, comment_id, num_comments);
-        }
-        else {
+        } else {
           insertComment_WDP(post_id, num_comments);
         }
         cancelCommentAction_WDP(post_id);
@@ -274,7 +271,7 @@ jQuery(document).ready(function ($) {
       $(this).find(':submit').removeAttr('disabled');
     }
     return false;
-  });//end submit
+  }); //end submit
 
   function getComments_WDP(post_id, num_comments, num_get_comments, order_comments) {
     var status = $('#wdp-comment-status-' + post_id);
@@ -282,7 +279,7 @@ jQuery(document).ready(function ($) {
     if (num_comments > 0) {
       jQuery.ajax({
         type: "POST",
-        dataType: "html",// tipo de información que se espera de respuesta
+        dataType: "html", // tipo de información que se espera de respuesta
         url: WDP.ajaxurl,
         data: {
           action: 'get_comments',
@@ -298,7 +295,7 @@ jQuery(document).ready(function ($) {
           status.removeClass('wdp-loading').html('').hide();
           $container_comments.html(data);
           highlightPopularComments_WDP(post_id, $container_comments);
-          $container_comments.show();//Mostramos los Comentarios
+          $container_comments.show(); //Mostramos los Comentarios
           //Insertamos Paginación de Comentarios
           jPages_WDP(post_id, WDP.numPerPage);
           toggleMoreComments($container_comments);
@@ -310,12 +307,11 @@ jQuery(document).ready(function ($) {
           clog('errorThrown');
           clog(errorThrown);
         },
-        complete: function (jqXHR, textStatus) {
-        }
-      });//end jQuery.ajax
-    }//end if
+        complete: function (jqXHR, textStatus) {}
+      }); //end jQuery.ajax
+    } //end if
     return false;
-  }//end function
+  } //end function
 
 
   function highlightPopularComments_WDP(post_id, $container_comments) {
@@ -345,7 +341,7 @@ jQuery(document).ready(function ($) {
     var link_show_comments = $('#wdp-link-' + post_id);
     var comment_form = $('#commentform-' + post_id);
     var status = $('#wdp-comment-status-' + post_id);
-    var form_data = comment_form.serialize();//obtenemos los datos
+    var form_data = comment_form.serialize(); //obtenemos los datos
 
     $.ajax({
       type: 'post',
@@ -365,8 +361,7 @@ jQuery(document).ready(function ($) {
             num_comments = String(parseInt(num_comments, 10) + 1);
             link_show_comments.find('span').html(num_comments);
           }
-        }
-        else {
+        } else {
           status.html('<p class="wdp-ajax-error">Error processing your form</p>');
         }
         //Agregamos el nuevo comentario a la lista
@@ -382,7 +377,7 @@ jQuery(document).ready(function ($) {
           status.removeClass('wdp-loading').fadeOut(600);
         }, 2500);
       }
-    });//end ajax
+    }); //end ajax
     return false;
   }
 
@@ -391,7 +386,7 @@ jQuery(document).ready(function ($) {
     var comment_form = $('#commentform-' + post_id);
     var status = $('#wdp-comment-status-' + post_id);
     var item_comment = $('#wdp-item-comment-' + comment_id);
-    var form_data = comment_form.serialize();//obtenemos los datos
+    var form_data = comment_form.serialize(); //obtenemos los datos
 
     $.ajax({
       type: 'post',
@@ -420,8 +415,7 @@ jQuery(document).ready(function ($) {
           setTimeout(function () {
             scrollThis_WDP(item_comment.find('ul li').last());
           }, 1000);
-        }
-        else {
+        } else {
           status.html('<p class="wdp-ajax-error">Error in processing your form.</p>');
         }
       },
@@ -433,7 +427,7 @@ jQuery(document).ready(function ($) {
           status.removeClass('wdp-loading').fadeOut(600);
         }, 2500);
       }
-    });//end ajax
+    }); //end ajax
     return false;
 
   }
@@ -464,17 +458,16 @@ jQuery(document).ready(function ($) {
           setTimeout(function () {
             scrollThis_WDP($('#wdp-comment-' + comment_id));
           }, 1000);
-        }
-        else {
+        } else {
           console.log("Errors: " + data.error);
         }
-      },//end success
+      }, //end success
       complete: function (jqXHR, textStatus) {
         setTimeout(function () {
           status.removeClass('wdp-loading').fadeOut(600);
         }, 2500);
       }
-    });//end jQuery.ajax
+    }); //end jQuery.ajax
     return false;
   }
 
@@ -501,19 +494,18 @@ jQuery(document).ready(function ($) {
           autosize.update($('#wdp-textarea-' + post_id));
           //$('#commentform-'+post_id).find('input[name="submit"]').hide();
           $('#commentform-' + post_id).find('input.wdp-cancel-btn').show();
-        }
-        else {
+        } else {
 
         }
-      },//end success
+      }, //end success
       complete: function (jqXHR, textStatus) {
         //setTimeout(function(){
         //status.removeClass('wdp-loading').hide();
         //},2500);
       }
-    });//end jQuery.ajax
+    }); //end jQuery.ajax
     return false;
-  }//end function
+  } //end function
 
 
   function deleteComment_WDP(post_id, comment_id) {
@@ -527,16 +519,15 @@ jQuery(document).ready(function ($) {
         comment_id: comment_id,
         nonce: WDP.nonce
       },
-      beforeSend: function () {
-      },
+      beforeSend: function () {},
       success: function (data) {
         if (data === 'ok') {
           $('#wdp-item-comment-' + comment_id).remove();
         }
-      }//end success
-    });//end jQuery.ajax
+      } //end success
+    }); //end jQuery.ajax
     return false;
-  }//end function
+  } //end function
 
   //MOSTRAR/OCULTAR MÁS COMENTARIOS
   function toggleMoreComments($container_comments) {
@@ -586,7 +577,7 @@ jQuery(document).ready(function ($) {
         $('#wdp-modal-footer').prepend('<a id="wdp-modal-verifique-video" class="wdp-modal-verifique wdp-modal-btn" href="#">' + WDP.checkVideo + '</a>');
         break;
     }
-  });//
+  }); //
   //acción Ok
   $(document).delegate('.wdp-modal-ok', 'click', function (e) {
     e.preventDefault();
@@ -675,11 +666,11 @@ jQuery(document).ready(function ($) {
     var $urlVideo = $('#wdp-modal-url-video');
     var $urlVideoVal = $urlVideo.val().replace(/\s+/g, '');
     $urlVideo.removeClass('wdp-error');
-    $(this).attr('id', '');//desactivamos el enlace
+    $(this).attr('id', ''); //desactivamos el enlace
 
     if ($urlVideoVal.length < 1) {
       $urlVideo.addClass('wdp-error');
-      $('.wdp-modal-video').find('a.wdp-modal-verifique').attr('id', 'wdp-modal-verifique-video');//activamos el enlace
+      $('.wdp-modal-video').find('a.wdp-modal-verifique').attr('id', 'wdp-modal-verifique-video'); //activamos el enlace
       return false;
     }
 
@@ -703,9 +694,9 @@ jQuery(document).ready(function ($) {
         $('#wdp-modal-preview').html('<p class="wdp-modal-error">Failed to process, try again</p>');
       },
       complete: function (jqXHR, textStatus) {
-        $('.wdp-modal-video').find('a.wdp-modal-verifique').attr('id', 'wdp-modal-verifique-video');//activamos el enlace
+        $('.wdp-modal-video').find('a.wdp-modal-verifique').attr('id', 'wdp-modal-verifique-video'); //activamos el enlace
       }
-    });//end ajax
+    }); //end ajax
   });
 
   function closeModal_WDP() {
@@ -740,8 +731,8 @@ jQuery(document).ready(function ($) {
           direction: "forward",
           animation: "fadeIn",
         });
-      }//end if
-    }//end if
+      } //end if
+    } //end if
     return false;
   }
 
@@ -757,7 +748,9 @@ jQuery(document).ready(function ($) {
     if ($this.length) {
       var $position = $this.offset().top;
       var $scrollThis = Math.abs($position - 200);
-      $('html,body').animate({ scrollTop: $scrollThis }, 'slow');
+      $('html,body').animate({
+        scrollTop: $scrollThis
+      }, 'slow');
     }
     return false;
   }
@@ -823,8 +816,7 @@ jQuery(document).ready(function ($) {
       $fieldID.selectionStart = startPos + $value.length;
       $fieldID.selectionEnd = startPos + $value.length;
       $fieldID.scrollTop = scrollTop;
-    }
-    else {
+    } else {
       $fieldID.value += textArea.value;
       $fieldID.focus();
     }
@@ -860,11 +852,9 @@ jQuery(document).ready(function ($) {
           $ratingCount.html(data.likes).attr('title', data.likes + ' ' + WDP_WP.textLikes);
           if (data.likes < 0) {
             $ratingCount.removeClass().addClass('wdp-rating-count wdp-rating-negative');
-          }
-          else if (data.likes > 0) {
+          } else if (data.likes > 0) {
             $ratingCount.removeClass().addClass('wdp-rating-count wdp-rating-positive');
-          }
-          else {
+          } else {
             $ratingCount.removeClass().addClass('wdp-rating-count wdp-rating-neutral');
           }
         } else {
@@ -876,9 +866,9 @@ jQuery(document).ready(function ($) {
       },
       complete: function (data) {
         $ratingCount.removeClass('wdpo-loading');
-      }//end success
+      } //end success
 
-    });//end jQuery.ajax
+    }); //end jQuery.ajax
   }
 
   function clog(msg) {
@@ -889,8 +879,4 @@ jQuery(document).ready(function ($) {
     console.log(msg, msg2);
   }
 
-});//end ready
-
-
-
-
+}); //end ready

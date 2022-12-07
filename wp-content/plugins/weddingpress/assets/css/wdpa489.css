@@ -52,6 +52,7 @@
 .wpkoi-elements-countdown-items .wpkoi-elements-countdown-item>div {
     background: #111
 }
+
 /*end-countdown*/
 
 /*start-guestbook*/
@@ -239,6 +240,7 @@ select.form-control {
 }
 
 @media (min-width:300px) {
+
     .elementor-wdp-form-wrapper .contact-form input[type="email"],
     .elementor-wdp-form-wrapper .contact-form input[type="text"],
     .elementor-wdp-form-wrapper .contact-form textarea,
@@ -307,6 +309,7 @@ select.form-control {
 }
 
 @media (min-width:300px) {
+
     .elementor-wdp-form-wrapper.elementor-button-width-input button,
     .elementor-wdp-form-wrapper.elementor-button-width-input input[type="submit"] {
         min-width: 100%
@@ -455,6 +458,7 @@ label {
 }
 
 @media (min-width:300px) {
+
     .wdp-form-wrapper-kit .contact-form input[type="email"],
     .wdp-form-wrapper-kit .contact-form input[type="text"],
     .wdp-form-wrapper-kit .contact-form textarea,
@@ -523,6 +527,7 @@ label {
 }
 
 @media (min-width:300px) {
+
     .wdp-form-wrapper-kit.elementor-button-width-input button,
     .wdp-form-wrapper-kit.elementor-button-width-input input[type="submit"] {
         min-width: 100%
@@ -621,29 +626,35 @@ label {
 .wdp-form-nama {
     float: left;
 }
+
 .wdp-qrcode-copy {
     color: #0bc82e;
     margin-top: 5px;
-    text-align:center;
+    text-align: center;
     padding: 5px;
 }
+
 .qrcode-button {
     float: left;
 }
+
 .qrcode-text {
     display: block;
     margin-bottom: 20px;
     text-align: center;
     margin-top: 30px;
 }
+
 .wdp-center {
     display: block;
-    text-align:center;
+    text-align: center;
 }
+
 .wdp-qrcode-center {
-    text-align:center;
+    text-align: center;
     padding-top: 10px;
 }
+
 .qrcode-show {
     padding-top: 70px;
     display: block;
